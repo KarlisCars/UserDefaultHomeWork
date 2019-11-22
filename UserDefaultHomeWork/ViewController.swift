@@ -9,12 +9,28 @@
 import UIKit
 
 class ViewController: UIViewController {
+    
+    var counter = 0
+    let defaults = UserDefaults.standard
+    
 
+    @IBOutlet weak var counterLabel: UILabel!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        counter = defaults.integer(forKey: "counterKey")
+        counterLabel.text = "\(counter)"
     }
 
-
+    @IBAction func addOneButtonPressed(_ sender: Any) {
+        
+        counter += 1
+        counterLabel.text = "\(counter)"
+        defaults.setValue(counter, forKey: "counterKey")
+        
+    }
+    
 }
 
